@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+    airflow:
+      image: hannaj06/airflow
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - 8080:8080
+
+    docker_postgres:
+      image: postgres:9.6.9
+      ports:
+          - 8000:5432
+      environment:
+        POSTGRES_PASSWORD: KA83MS
+        POSTGRES_USER: airflow
+        POSTGRES_DB: airflow
+      restart: always
