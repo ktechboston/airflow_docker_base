@@ -9,19 +9,26 @@ RUN apt-get update \
     && mkdir -p airflow/logs/scheduler \
 	&& mkdir -p airflow/plugins 
 
-WORKDIR /root/airflow
-
 COPY requirements.txt requirements.txt
 
-COPY airflow.cfg airflow/airflow.cfg
+COPY airflow.cfg /root/airflow/airflow.cfg
 
 RUN pip3 install -r requirements.txt \
 	&& pip install apache-airflow[postgres] \
-	&& cd airflow \
-	&& export AIRFLOW_HOME=~/airflow \
-	&& airflow initdb 
+	&& cd airflow 
 
+RUN export AIRFLOW_HOME=/root/airflow
+#	&& airflow initdb 
 
+WORKDIR /root/airflow
+
+COPY airflow.cfg airflow.cfg
+
+RUN  mkdir -p ~/airflow/dags \
+    && mkdir -p ~/airflow/logs/scheduler \
+	&& mkdir -p ~/airflow/plugins \
+
+ENV AIRFLOW_HOME=/root/airflow
 EXPOSE 8080
 
 #CMD airflow scheduler & airflow webserver -p 8080 
