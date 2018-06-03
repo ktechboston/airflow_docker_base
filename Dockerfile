@@ -18,9 +18,10 @@ COPY airflow.cfg airflow/airflow.cfg
 RUN pip3 install -r requirements.txt \
 	&& pip install apache-airflow[postgres] \
 	&& cd airflow \
+	&& export AIRFLOW_HOME=~/airflow \
 	&& airflow initdb 
 
 
 EXPOSE 8080
 
-CMD airflow scheduler & airflow webserver -p 8080 
+#CMD airflow scheduler & airflow webserver -p 8080 
