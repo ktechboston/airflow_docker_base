@@ -8,13 +8,17 @@ services:
         dockerfile: Dockerfile
       ports:
         - 8080:8080
+      depends_on:
+        - docker_postgres
+
 
     docker_postgres:
       image: postgres:9.6.9
       ports:
-          - 8000:5432
+          - 8000:5438
       environment:
-        POSTGRES_PASSWORD: KA83MS
-        POSTGRES_USER: airflow
         POSTGRES_DB: airflow
+        POSTGRES_USER: airflow
+        POSTGRES_PASSWORD: vv3paY4j0QN6
+        
       restart: always
