@@ -8,14 +8,19 @@ services:
         dockerfile: Dockerfile
       ports:
         - 8080:8080
+      volumes:
+        - /home/joe/Projects/airflow_install/:/root
       depends_on:
         - docker_postgres
+      stdin_open: true
+      tty: true
+
 
 
     docker_postgres:
       image: postgres:9.6.9
       ports:
-          - 5438:5432
+          - 5433:5432
       environment:
         POSTGRES_DB: airflow
         POSTGRES_USER: airflow
