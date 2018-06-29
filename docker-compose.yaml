@@ -9,7 +9,7 @@ services:
       ports:
         - 8080:8080
       volumes:
-        - /home/joe/Projects/airflow_install/:/root
+        - ${PWD}:/root
       depends_on:
         - docker_postgres
       stdin_open: true
