@@ -10,11 +10,11 @@ RUN apt-get update \
 
 COPY requirements.txt /root/requirements.txt
 
-WORKDIR /root 
-
 RUN pip3 install -r requirements.txt \
     && pip install apache-airflow[postgres] 
 
 ENV AIRFLOW_HOME=/root/airflow
+
+WORKDIR /root/airflow 
 
 EXPOSE 8080
