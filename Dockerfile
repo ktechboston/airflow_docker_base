@@ -10,7 +10,8 @@ RUN apt-get update \
 
 COPY requirements.txt /root/requirements.txt
 
-RUN pip3 install -r requirements.txt \
+RUN cd /root \
+	pip3 install -r requirements.txt \
     && pip install apache-airflow[postgres] 
 
 ENV AIRFLOW_HOME=/root/airflow
