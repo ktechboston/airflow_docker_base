@@ -25,5 +25,3 @@ services:
         POSTGRES_DB: airflow
         POSTGRES_USER: airflow
         POSTGRES_PASSWORD: vv3paY4j0QN6
-        
-      restart: always
