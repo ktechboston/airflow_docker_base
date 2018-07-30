@@ -5,6 +5,7 @@ Requires docker and docker-compose to be installed on your local machine.
 * https://docs.docker.com/install/
 * https://docs.docker.com/compose/install/
 
+Setup:
 ```bash
 docker-compose up --build
 
