@@ -1,16 +1,17 @@
-# airflow_install
+# Setup
 
-Requires docker and docker-compose to be installed on your local machine.
+install docker community edition, docker-compose, docker machine
 
-* https://docs.docker.com/install/
-* https://docs.docker.com/compose/install/
+* https://docs.docker.com/install/linux/docker-ce/ubuntu/
+* https://github.com/docker/machine/releases
+* https://github.com/docker/compose/releases
 
-Setup:
+
+
+# Quick Start Airflow
+
 ```bash
 docker-compose up --build -d
-#open new terminal
-docker exec -it airflow_install_airflow_1 bash
-python3 make_user.py
 ```
 Open your webbrowser to 127.0.0.1:8080
 
