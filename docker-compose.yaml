@@ -1,27 +1,39 @@
-version: '2'
-
+version: '2.1'
 services:
-    airflow:
-      image: hannaj06/airflow
-      build:
-        context: .
-        dockerfile: Dockerfile
-      ports:
-        - 8080:8080
-      volumes:
-        - ${PWD}:/root
-      depends_on:
-        - docker_postgres
-      stdin_open: true
-      tty: true
-
-
-
     docker_postgres:
-      image: postgres:9.6.9
-      ports:
+        image: postgres:9.6
+        ports:
           - 5433:5432
-      environment:
-        POSTGRES_DB: airflow
-        POSTGRES_USER: airflow
-        POSTGRES_PASSWORD: vv3paY4j0QN6
+        environment:
+            POSTGRES_DB: airflow
+            POSTGRES_USER: airflow
+            POSTGRES_PASSWORD: vv3paY4j0QN6
+            PGDATA: /var/lib/postgresql/data/pgdata
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data/pgdata
+
+
+    webserver:
+        image: docker-airflow-base
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        depends_on:
+            - docker_postgres
+        environment:
+            - LOAD_EX=n
+            - EXECUTOR=Local
+        volumes:
+            - ${PWD}:/root/home
+            - /mnt:/mnt   
+            - ${HOME}/.ssh:/root/.ssh
+            - ${HOME}/.databases.conf:/root/.databases.conf
+        ports:
+            - "8080:8080"
+        command: webserver
+        healthcheck:
+            test: ["CMD-SHELL", "[ -f /root/home/airflow/airflow-webserver.pid ]"]
+            interval: 30s
+            timeout: 30s
+            retries: 3
