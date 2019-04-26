@@ -1,8 +1,8 @@
 #Airflow container
 
-FROM tensorflow/tensorflow:1.3.0-gpu-py3
+FROM tensorflow/tensorflow:1.3.0-py3
 
-
+ARG AIRFLOW_VERSION=1.10.2
 ARG AIRFLOW_HOME=/root/home/airflow
 ARG HOST_MACHINE_HOME=/home/automation
 ARG DOCKER_HOME=/root
@@ -32,7 +32,8 @@ RUN apt-get update -yqq\
    && pip3 install --upgrade pip \
    && apt-get autoremove -yqq --purge \
    && apt-get clean \
-   && mkdir /root/home/airflow -p
+   && mkdir /root/home/airflow -p \
+   && pip install apache-airflow[crypto,postgres,jdbc,mysql,ssh${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION}
 
 
 COPY requirements.txt /root/requirements.txt
