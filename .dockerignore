@@ -1,3 +1,5 @@
 airflow/logs
+airflow/down_from_s3
+airflow/send_to_s3
 pgdata
 .git
