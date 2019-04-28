@@ -29,7 +29,7 @@ def clean_up():
 
 
 default_args = {
-    'owner': 'komodo',
+    'owner': 'airflow',
     'start_date': airflow.utils.dates.days_ago(1)
 }
 
