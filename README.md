@@ -13,5 +13,7 @@ install docker community edition, docker-compose, docker machine
 ```bash
 docker-compose up --build -d
 ```
-Open your webbrowser to 127.0.0.1:8080
+
+# webserver authentication is enabled
+Open your webbrowser to 127.0.0.1:8888
 
