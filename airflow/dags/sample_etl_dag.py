@@ -79,3 +79,9 @@ redshift_load = PythonOperator(
             python_callable=load_into_redshift,
             dag=dag
     )
+
+ga_dl.set_downsteam(s3_upload)
+log_dl.set_downsteam(s3_uploads)
+csv_dl.set_downsteam(csv_transform)
+csv_transform.set_downsteam(s3_upload)
+s3_upload.set_downsteam(redshift_load)
