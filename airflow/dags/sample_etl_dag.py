@@ -81,7 +81,7 @@ redshift_load = PythonOperator(
     )
 
 ga_dl.set_downstream(s3_upload)
-log_dl.set_downstream(s3_uploads)
+log_dl.set_downstream(s3_upload)
 csv_dl.set_downstream(csv_transform)
 csv_transform.set_downstream(s3_upload)
 s3_upload.set_downstream(redshift_load)
