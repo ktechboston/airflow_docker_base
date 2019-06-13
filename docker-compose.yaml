@@ -30,7 +30,7 @@ services:
             - ${HOME}/.ssh:/root/.ssh
             - ${HOME}/.databases.conf:/root/.databases.conf
         ports:
-            - "8080:8080"
+            - "8888:8080"
         command: webserver
         healthcheck:
             test: ["CMD-SHELL", "[ -f /root/home/airflow/airflow-webserver.pid ]"]
