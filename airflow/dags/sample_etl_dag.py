@@ -37,7 +37,7 @@ default_args = {
 
 
 dag = DAG(
-    dag_id='scheduler_log_cleanup',
+    dag_id='ETL_example',
     default_args=default_args,
     schedule_interval='0 * * * *',
     max_active_runs=1
