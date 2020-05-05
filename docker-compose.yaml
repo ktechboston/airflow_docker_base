@@ -2,6 +2,7 @@ version: '2.1'
 services:
     docker_postgres:
         image: postgres:9.6
+        container_name: "docker_postgres"
         ports:
           - 5433:5432
         environment:
@@ -14,10 +15,7 @@ services:
 
 
     webserver:
-        image: docker-airflow-base
-        build:
-            context: .
-            dockerfile: Dockerfile
+        image: 145205126837.dkr.ecr.us-east-1.amazonaws.com/airfox-tensorflow-airflow:1.1
         restart: always
         depends_on:
             - docker_postgres
@@ -26,7 +24,7 @@ services:
             - EXECUTOR=Local
         volumes:
             - ${PWD}:/root/home
-            - /mnt:/mnt   
+            - /mnt:/mnt
             - ${HOME}/.ssh:/root/.ssh
             - ${HOME}/.databases.conf:/root/.databases.conf
         ports:

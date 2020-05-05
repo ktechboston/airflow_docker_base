@@ -1,0 +1,10 @@
+#Airflow container2
+
+FROM 145205126837.dkr.ecr.us-east-1.amazonaws.com/airfox-tensorflow-airflow
+
+RUN pip uninstall -y db-utils
+
+RUN git clone https://github.com/ktechboston/db_utils.git \
+    && cd db_utils \
+    && git checkout emergency-install \
+    && python setup.py install
